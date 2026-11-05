@@ -1,0 +1,19 @@
+{
+  "name": "perixa-billing-pro",
+  "productName": "Perixa Billing Pro",
+  "version": "1.0.0",
+  "description": "Private billing and sales management for Perixa Technologies",
+  "author": "Perixa Technologies",
+  "main": "main.js",
+  "scripts": { "start": "electron .", "dist": "electron-builder --win nsis" },
+  "devDependencies": { "electron": "^33.0.0", "electron-builder": "^25.0.0" },
+  "build": {
+    "appId": "com.perixa.billingpro",
+    "productName": "Perixa Billing Pro",
+    "files": ["main.js", "package.json", "static/favicon.ico", "static/app-icon.ico"],
+    "extraResources": [{ "from": "dist/perixa-server.exe", "to": "perixa-server.exe" }],
+    "win": { "target": "nsis", "icon": "static/app-icon.ico" },
+    "directories": { "output": "release" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true }
+  }
+}
