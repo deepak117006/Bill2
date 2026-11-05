@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Perixa Billing Pro</title><link rel="icon" href="/favicon.ico"><meta name="theme-color" content="#0b1f44"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><link rel="manifest" href="/static/manifest.webmanifest"><link rel="apple-touch-icon" href="/static/icon-192.png"><link rel="stylesheet" href="/static/style.css"></head>
+<body class="login"><form id="f" class="card" autocomplete="on"><h2>Perixa <span>Billing Pro</span></h2>
+<p class="muted">{% if setup %}First run: create your admin login.{% else %}Private access only.{% endif %}</p>
+<label>Username<input name="username" required autofocus></label>
+<label>Password{% if setup %} (min 8 chars){% endif %}<input name="password" type="password" required minlength="{{ 8 if setup else 1 }}"></label>
+<button class="btn">{% if setup %}Create & sign in{% else %}Sign in{% endif %}</button><p id="e" class="err"></p></form>
+<script>f.onsubmit=async e=>{e.preventDefault();const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json','X-Requested-With':'fetch'},body:JSON.stringify(Object.fromEntries(new FormData(f)))});const j=await r.json();r.ok?location.reload():e_.textContent=j.error};const e_=document.getElementById('e')</script></body></html>
